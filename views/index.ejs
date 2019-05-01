@@ -33,16 +33,21 @@
 
       <div class="col-12">
         <div id="wrapper" style="width:1020px; display:table;">
-          <div id="jsonOutput" style="width:600px; display:table-cell;">
-            Response:
-            <br><br>
-            <textarea id="responseTextArea" class="UIInput" style="width:580px; height:400px;"></textarea>
-          </div>
+
           <div id="imageDiv" style="width:420px; display:table-cell;">
             Source image:
             <br><br>
             <img id="sourceImage" width="400" />
+            <h1 id="desc"></h1>
           </div>
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div id="jsonOutput" style="width:600px; display:table-cell;">
+          Response:
+          <br><br>
+          <textarea id="responseTextArea" class="UIInput" style="width:580px; height:400px;"></textarea>
         </div>
       </div>
 
@@ -143,6 +148,7 @@
         .done(function (data) {
           // Show formatted JSON on webpage.
           $("#responseTextArea").val(JSON.stringify(data, null, 2));
+          $("#desc").text(data.description.captions[0].text)
         })
 
         .fail(function (jqXHR, textStatus, errorThrown) {
